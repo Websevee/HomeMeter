@@ -9,13 +9,18 @@ import { Observable } from 'rxjs';
   styleUrls: ['./houses-list.component.css']
 })
 export class HousesListComponent implements OnInit {
-  houses$: Observable<House[]>;
+  houses: House[];
 
 
   constructor(private service: HouseService) { }
 
   ngOnInit() {
-    this.houses$ = this.service.getHouses();
+    this.getHouses();
+  }
+
+  getHouses(): void {
+    this.service.getHouses()
+    .subscribe(result => this.houses = result);
   }
 
 }

@@ -1,6 +1,31 @@
-<h2>My Heroes</h2>
-<ul class="houses">
-  <li *ngFor="let house of houses$">
-    <span class="badge">{{house.id}}</span> {{house.Zip}}
-  </li>
-</ul>
+<h1 id="tableLabel">Houses</h1>
+
+<p *ngIf="!houses"><em>Loading...</em></p>
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="houses">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Zip</th>
+      <th>Country</th>
+      <th>City</th>
+      <th>Street</th>
+      <th>Number</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let house of houses">
+      <td>{{ house.id }}</td>
+      <td>{{ house.zip }}</td>
+      <td>{{ house.country }}</td>
+      <td>{{ house.city }}</td>
+      <td>{{ house.street }}</td>
+      <td>{{ house.number }}</td>
+      <td>
+        
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<mat-slider min="1" max="100" step="1" value="1"></mat-slider>

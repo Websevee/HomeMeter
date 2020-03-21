@@ -15,6 +15,6 @@ export class HouseService {
   }
 
   getHouses(): Observable<House[]> {
-    return this.http.get<House[]>(this.baseUrl + 'api/houses');
+    return this.http.get<House[]>(this.baseUrl + 'api/House');
   }
 }

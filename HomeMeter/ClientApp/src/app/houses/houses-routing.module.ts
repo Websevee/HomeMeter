@@ -4,7 +4,7 @@ import { HousesListComponent } from './houses-list/houses-list.component';
 
 
 const routes: Routes = [
-  { path: '', component: HousesListComponent }];
+  { path: 'houses', component: HousesListComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
