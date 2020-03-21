@@ -1,1 +1,6 @@
-<p>houses-list works!</p>
+<h2>My Heroes</h2>
+<ul class="houses">
+  <li *ngFor="let house of houses$">
+    <span class="badge">{{house.id}}</span> {{house.Zip}}
+  </li>
+</ul>

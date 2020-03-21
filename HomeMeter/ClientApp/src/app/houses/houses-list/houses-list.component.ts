@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HouseService } from '../house.service';
+import { House } from '../house';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-houses-list',
@@ -6,10 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./houses-list.component.css']
 })
 export class HousesListComponent implements OnInit {
+  houses$: Observable<House[]>;
 
-  constructor() { }
+
+  constructor(private service: HouseService) { }
 
   ngOnInit() {
+    this.houses$ = this.service.getHouses();
   }
 
 }
