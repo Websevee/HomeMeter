@@ -14,7 +14,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let house of houses">
+    <tr *ngFor="let house of houses | async">
       <td>{{ house.id }}</td>
       <td>{{ house.zip }}</td>
       <td>{{ house.country }}</td>
@@ -22,8 +22,8 @@
       <td>{{ house.street }}</td>
       <td>{{ house.number }}</td>
       <td>
-        
-      </td>
+        <input type="button" value="Удалить" (click)="deleteHouse(house.id)" class="btn btn-danger" />
+        <button class="btn btn-default" (click)="deleteHouse(house.id)">Delete</button></td>
     </tr>
   </tbody>
 </table>
