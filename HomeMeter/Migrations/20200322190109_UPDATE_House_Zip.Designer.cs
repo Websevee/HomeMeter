@@ -3,14 +3,16 @@ using HomeMeter.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HomeMeter.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20200322190109_UPDATE_House_Zip")]
+    partial class UPDATE_House_Zip
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,18 +61,15 @@ namespace HomeMeter.Migrations
                     b.Property<int>("HouseId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Number")
+                        .HasColumnType("int");
+
                     b.Property<double>("Readings")
                         .HasColumnType("float");
-
-                    b.Property<int>("SerialNumber")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("HouseId")
-                        .IsUnique();
-
-                    b.HasIndex("SerialNumber")
                         .IsUnique();
 
                     b.ToTable("Meter");

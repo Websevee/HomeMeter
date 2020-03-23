@@ -20,6 +20,9 @@ namespace HomeMeter.Data
             builder.Entity<Meter>()
                     .HasOne(x => x.House)
                     .WithOne(x => x.Meter);
+
+            builder.Entity<Meter>()
+                    .HasIndex(x => x.SerialNumber).IsUnique();
         }
     }
 }

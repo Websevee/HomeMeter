@@ -1,8 +1,17 @@
 <h1 id="tableLabel">Houses</h1>
 
-<p *ngIf="!houses"><em>Loading...</em></p>
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="houses">
-  <thead>
+<p *ngIf="!houses$"><em>Loading...</em></p>
+
+
+<div class="button-row" style="padding-top: 10px;padding-bottom: 10px;">
+  <button mat-raised-button color="primary" (click)="showCreateHouse()">Добавить дом</button>
+  <button mat-raised-button color="link" (click)="showMaxReadingHouse(false)">Дом с наибольшим значением счетчика</button>
+  <button mat-raised-button color="link" (click)="showMaxReadingHouse(true)">Дом с наименьшим значением счетчика</button>
+</div>
+
+
+<table class='table' aria-labelledby="tableLabel" *ngIf="houses$">
+  <thead class="thead-dark">
     <tr>
       <th>Id</th>
       <th>Zip</th>
@@ -14,7 +23,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let house of houses | async">
+    <tr *ngFor="let house of houses$ | async">
       <td>{{ house.id }}</td>
       <td>{{ house.zip }}</td>
       <td>{{ house.country }}</td>
@@ -22,10 +31,11 @@
       <td>{{ house.street }}</td>
       <td>{{ house.number }}</td>
       <td>
-        <input type="button" value="Удалить" (click)="deleteHouse(house.id)" class="btn btn-danger" />
-        <button class="btn btn-default" (click)="deleteHouse(house.id)">Delete</button></td>
+        <div class="button-row">
+          <button mat-raised-button color="primary" type="button" (click)="detailHouse(house.id)">Подробнее</button>
+          <button mat-raised-button color="warn" type="button" (click)="deleteHouse(house.id)">Удалить</button>  
+        </div>
+      </td>
     </tr>
   </tbody>
 </table>
-
-<mat-slider min="1" max="100" step="1" value="1"></mat-slider>

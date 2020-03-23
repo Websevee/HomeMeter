@@ -42,6 +42,15 @@ namespace HomeMeter.Controllers
             return meter;
         }
 
+        [Route("House/{houseId}")]
+        [HttpGet("{houseId}")]
+        public async Task<ActionResult<Meter>> GetHouseMeter(int houseId)
+        {
+            var meter = await _context.Meter.FirstOrDefaultAsync(x => x.HouseId == houseId);
+
+            return meter;
+        }
+
         // PUT: api/Meter/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
@@ -69,6 +78,56 @@ namespace HomeMeter.Controllers
                 {
                     throw;
                 }
+            }
+
+            return NoContent();
+        }
+
+        [Route("SetHouseReading")]
+        [HttpPost]
+        public async Task<IActionResult> SetHouseReading(int houseId, double readings)
+        {
+            var meter = await _context.Meter.FirstOrDefaultAsync(x => x.HouseId == houseId);
+
+            if (meter == null)
+            {
+                return BadRequest();
+            }
+
+            meter.Readings = readings;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch
+            {
+                throw;
+            }
+
+            return NoContent();
+        }
+
+        [Route("SetSerialNumberReading")]
+        [HttpPost]
+        public async Task<IActionResult> SetSerialNumberReading(int serialNumber, double readings)
+        {
+            var meter = await _context.Meter.FirstOrDefaultAsync(x => x.SerialNumber == serialNumber);
+
+            if (meter == null)
+            {
+                return BadRequest();
+            }
+
+            meter.Readings = readings;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch
+            {
+                throw;
             }
 
             return NoContent();

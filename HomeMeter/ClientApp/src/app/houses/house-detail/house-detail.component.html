@@ -1,0 +1,60 @@
+<h1 class="mat-display-1">Edit House. Id: {{id}}</h1>
+<p><button mat-raised-button color="primary" type="button" (click)="goBack()">Back</button></p>
+
+<mat-accordion>
+  <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Address of HouseId: {{id}}
+      </mat-panel-title>
+      <mat-panel-description>
+        Change address
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+  
+    <form [formGroup]="addressForm" (ngSubmit)="onSubmit()">
+      <h1 class="mat-h1">Address</h1>
+      <input type="hidden" formControlName="id">
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Zip Code:</mat-label>
+        <input matInput type="text" formControlName="zip" required>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Country:</mat-label>
+          <input matInput type="text" formControlName="country" required>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>City:</mat-label>
+        <input matInput type="text" formControlName="city" required>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Street:</mat-label>
+        <input matInput type="text" formControlName="street" required>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Number:</mat-label>
+        <input matInput type="number" formControlName="number" pattern="\d*" min="1" required>
+      </mat-form-field>
+      <br>
+      <button mat-button type="button" (click)="goBack()">Back</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!addressForm.valid">Submit</button>
+    </form>
+  </mat-expansion-panel>
+  <mat-expansion-panel *ngIf="id">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Meter of this House
+      </mat-panel-title>
+      <mat-panel-description>
+        Change meter
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <app-meter-detail [houseId]="id"></app-meter-detail>
+  </mat-expansion-panel>
+</mat-accordion>

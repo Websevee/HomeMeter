@@ -1,8 +1,8 @@
 export interface House {
-    id: Number,
-    zip: Number,
-    country: String,
-    city: String,
-    street: String,
-    number: Number
+    id: number,
+    zip: string,
+    country: string,
+    city: string,
+    street: string,
+    number: number
 }

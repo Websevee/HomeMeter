@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HomeMeter.Data;
 using HomeMeter.Models;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace HomeMeter.Controllers
 {
@@ -39,6 +41,23 @@ namespace HomeMeter.Controllers
                 return NotFound();
             }
 
+            return house;
+        }
+
+        [Route("MaxReading")]
+        [HttpGet]
+        public async Task<ActionResult<House>> GetMaxReadingHouse(bool revert = false)
+        {
+            var houseQuery =    from m in _context.Meter
+                                join h in _context.House
+                                    on m.HouseId equals h.Id
+                                orderby m.Readings descending
+                                select h;
+            var houses = await houseQuery.ToListAsync();
+
+            if (houses.Count == 0) return NotFound();
+
+            var house = revert ? houses.Last() : houses.First();
             return house;
         }
 
