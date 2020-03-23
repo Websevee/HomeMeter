@@ -25,6 +25,10 @@
     border-color: #ccc;
     cursor: auto;
   }
+
+  .mat-form-field {
+    margin: .4em;
+  }
   
   
   /*
