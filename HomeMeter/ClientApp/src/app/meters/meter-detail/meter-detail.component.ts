@@ -16,7 +16,7 @@ export class MeterDetailComponent implements OnInit {
 
   meterForm = this.fb.group({
     id: 0,
-    serialNumber: ['', Validators.required, Validators.min(0)],
+    serialNumber: ['', [Validators.required, Validators.min(0)]],
     readings: ['', [Validators.required, Validators.min(0)]],
     houseId: null
   });
