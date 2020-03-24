@@ -113,7 +113,7 @@ insert into House (Zip, Country, City, Street, Number) values ('1224', 'Greece',
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.Sql("DELETE FROM [dbo].[Houses]");
+            migrationBuilder.Sql("DELETE FROM [dbo].[House]");
         }
     }
 }
